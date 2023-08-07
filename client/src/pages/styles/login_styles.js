@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import Navigation from "../../components/Common/nav";
 import { screens } from "../../helper/styles_variables";
 
+export const NotificationText = styled.p`
+  color: red;
+  padding: 10px 0;
+`;
+
 export const ForgotPasswordLink = styled(Link)`
   text-decoration: none;
   color: black;
@@ -136,6 +141,8 @@ export const SigninButton = styled.button`
   text-align: center;
   width: 100%;
   padding: 15px 30px;
+
+  cursor: pointer;
 `;
 
 export const Nav = styled(Navigation)`

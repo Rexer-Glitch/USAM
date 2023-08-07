@@ -6,8 +6,5 @@ export const Container = styled.div`
 `;
 
 export const Nav = styled(Navigation)`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
 `;
