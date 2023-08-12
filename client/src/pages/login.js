@@ -25,7 +25,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notificationText, setNotificationText] = useState("");
-  const { setUserToken, setIsAuthenticated } = useContext(AuthContext);
+
+  const { Login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -34,28 +35,12 @@ function Login() {
   };
 
   const handleLogin = async () => {
-    try {
-      const response = await fetch("/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Login successful, set user token and isAuthenticated
-        setUserToken(data.token);
-        setIsAuthenticated(true);
-        setNotificationText("");
-        navigate("/dashboard");
-      } else {
-        setNotificationText(data.message);
-      }
-    } catch (error) {
-      setNotificationText("Error, please try again later");
+    const result = await Login(email, password);
+    if (result === true) {
+      setNotificationText("");
+      navigate("/dashboard");
+    } else {
+      setNotificationText(result);
     }
   };
 

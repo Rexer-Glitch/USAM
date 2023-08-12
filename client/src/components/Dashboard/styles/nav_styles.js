@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link as link } from "react-router-dom";
+import { screens } from "../../../helper/styles_variables";
 
 export const Copyright = styled.p`
   font-size: 0.8rem;
@@ -95,6 +96,10 @@ export const NavlinksContainer = styled.section`
 `;
 
 export const LogoContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
@@ -102,17 +107,58 @@ export const LogoContainer = styled.section`
 
   color: #ffffff;
 
-  padding: 10px;
+  padding: 20px 40px;
 
   border-bottom: 1px solid rgba(2555, 255, 255, 0.15);
+
+  & div {
+    width: 50px;
+    height: 50px;
+    position: relative;
+
+    cursor: pointer;
+  }
+
+  & div::before,
+  & div::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+
+    background: white;
+  }
+  & div::before {
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) rotateZ(45deg);
+  }
+
+  & div::after {
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+  }
+
+  @media (min-width: 768px) {
+    justify-content: center;
+    padding: 20px 0;
+    & div {
+      display: none;
+    }
+  }
 `;
 
 export const Container = styled.nav`
   position: relative;
+  z-index: 10;
   height: 100vh;
   width: 250px;
 
   background: #2c4844;
+  opacity: 0.99;
   color: white;
 
   transition: all ease-in-out 250ms;
@@ -144,4 +190,33 @@ export const Container = styled.nav`
     padding: 0;
 
   `}
+
+  @media (max-width: ${screens.tablet}) {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    text-align: center;
+
+    & ${Navlink} {
+      justify-content: flex-start;
+      margin-left: 50px;
+    }
+
+    & ${NavLinkGroup} {
+      & > label {
+        display: none;
+      }
+    }
+
+    & ${NavLinkGroup} + ${NavLinkGroup} {
+      margin-top: 30px;
+    }
+
+    & ${NavlinksContainer} {
+      margin: 50px;
+    }
+  }
 `;

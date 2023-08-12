@@ -195,10 +195,10 @@ export const LogoLinksContainer = styled.div`
 `;
 
 export const Container = styled.footer`
-  padding: 20px ${globalPadding};
   background: #3e5b56;
   color: white;
 
+  padding: 20px ${globalPadding};
   @media (max-width: ${screens.mobile}) {
     padding: 20px;
   }

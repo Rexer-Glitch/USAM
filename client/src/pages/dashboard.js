@@ -1,12 +1,14 @@
 import { Container } from "./styles/dashboard_styles";
 import Navigation from "../components/Dashboard/nav";
-import Content from "../components/Dashboard/content";
+import { DashboardContextProvider } from "../contexts/dashbboardContext";
 
-function Dashboard() {
+function Dashboard({ content: Content }) {
   return (
     <Container>
-      <Navigation />
-      <Content />
+      <DashboardContextProvider>
+        <Navigation />
+        <Content />
+      </DashboardContextProvider>
     </Container>
   );
 }

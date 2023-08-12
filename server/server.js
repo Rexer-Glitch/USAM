@@ -1,11 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const passport = require("passport");
-const session = require("express-session");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const articleRoutes = require("./routes/article");
 
 dotenv.config();
 
@@ -31,6 +30,8 @@ app.use(cors());
 app.use("/auth", authRoutes);
 
 app.use("/account", userRoutes);
+
+app.use("/articles", articleRoutes);
 
 app.get("/", function (res, req) {
   req.json({ data: "hello" });

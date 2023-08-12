@@ -119,6 +119,9 @@ export const Textbox = styled.input`
   width: 100%;
   padding: 15px 30px;
   border: 2px solid #162422;
+  outline: ${(props) =>
+    props.inValid === true ? "2px solid rgba(227, 11, 92, 0.5)" : ""};
+  outline-offset: ${(props) => (props.inValid === true ? "4px" : "")};
   border-radius: 20px;
 
   font-style: normal;
@@ -183,4 +186,6 @@ export const Content = styled.div`
   text-align: center;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  position: relative;
+`;

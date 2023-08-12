@@ -6,6 +6,7 @@ import {
   NavLink,
   MenuContainer,
   HMenu,
+  CloseMenu,
 } from "./styles/nav_styles";
 import MenuIcon from "../../assets/Menu.svg";
 import MenuDarkIcon from "../../assets/Menu_dark.svg";
@@ -32,25 +33,8 @@ function Navigation({
     const path = window.location.pathname;
     if (path === name) return true;
 
-    return path.replace("/", "").includes(name);
+    return path.replace(/\//g, "").includes(name);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        window.innerWidth < 768 &&
-        navLinkContainerRef.current &&
-        !navLinkContainerRef.current.contains(e.target) &&
-        isMenuOpen === true &&
-        navLinkContainerRef.current.style.height !== "0px"
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [navLinkContainerRef, isMenuOpen]);
 
   useEffect(() => {
     const updateMenuOnWindowResize = () => {
@@ -75,11 +59,12 @@ function Navigation({
       <AnimatePresence>
         {isMenuOpen && (
           <NavLinkContainer
-            initial={{ height: 0 }}
-            animate={{ height: "auto" }}
-            exit={{ height: 0 }}
+            initial={{ left: "100vw" }}
+            animate={{ left: 0 }}
+            exit={{ left: "100vw" }}
             ref={navLinkContainerRef}
           >
+            <CloseMenu onClick={() => setIsMenuOpen(false)}></CloseMenu>
             <li>
               <NavLink to="/" isLinkActive={isActiveLink("/")}>
                 Home
@@ -101,16 +86,10 @@ function Navigation({
               </NavLink>
             </li>
             <MembershipLinks>
-              <NavLink
-                to="/account/sign_in"
-                isLinkActive={isActiveLink("sign_in")}
-              >
+              <NavLink to="/login" isLinkActive={isActiveLink("sign_in")}>
                 Log in
               </NavLink>
-              <NavLink
-                to="/account/sign_up"
-                isLinkActive={isActiveLink("sign_up")}
-              >
+              <NavLink to="/signup" isLinkActive={isActiveLink("sign_up")}>
                 Sign up
               </NavLink>
             </MembershipLinks>

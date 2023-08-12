@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import { globalPadding, screens } from "../../../helper/styles_variables";
+import { screens } from "../../../helper/styles_variables";
 const backgroundAnimation = keyframes`
 0% {
     background-position: 0% 50%;
@@ -16,7 +16,7 @@ const backgroundAnimation = keyframes`
 export const CTAbtn = styled(Link)`
   background: #41775c;
   border-radius: 15px;
-  padding: 30px 35px;
+  padding: 20px 35px;
   margin: 40px;
 
   font-weight: 600;

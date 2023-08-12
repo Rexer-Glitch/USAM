@@ -29,9 +29,8 @@ function UnderConstruction() {
 
   return (
     <>
-      <Navigation />
+      <Navigation isDarkTheme={true} withShadow={false} />
       <Container>
-        
         <TextContainer
           initial="hidden"
           animate="visible"
@@ -45,29 +44,19 @@ function UnderConstruction() {
           animate="visible"
           variants={iconVariants}
         >
-          <Link
-          variants={iconVariants}
-          >
+          <Link variants={iconVariants}>
             <Icon src={Facebook} />
           </Link>
-          <Link
-          variants={iconVariants}
-          >
+          <Link variants={iconVariants}>
             <Icon src={Twitter} />
           </Link>
-          <Link
-          variants={iconVariants}
-          >
+          <Link variants={iconVariants}>
             <Icon src={Instagram} />
           </Link>
-          <Link
-          variants={iconVariants}
-          >
+          <Link variants={iconVariants}>
             <Icon src={Youtube} />
           </Link>
-          <Link
-          variants={iconVariants}
-          >
+          <Link variants={iconVariants}>
             <Icon src={Tiktok} />
           </Link>
         </SocialContainer>

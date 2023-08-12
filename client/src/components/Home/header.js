@@ -5,7 +5,7 @@ function Header() {
     <Container>
       <Heading>Welcome to United States Of Africa</Heading>
       <Subheading>Unite. Empower. Transform.</Subheading>
-      <CTAbtn to={"/membership"}>Become A Member</CTAbtn>
+      <CTAbtn to={"/signup"}>Become A Member</CTAbtn>
     </Container>
   );
 }

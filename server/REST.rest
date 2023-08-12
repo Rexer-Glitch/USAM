@@ -25,4 +25,36 @@ Content-Type: application/json
 
 ###
 GET http://192.168.1.162:5000/account/profile HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGNmZmU4YTMzZTUyMWNjY2Y5ZTVlOGEiLCJpYXQiOjE2OTE0MDY0NDksImV4cCI6MTY5MTQxMDA0OX0.QqZjCUMuNpHGiGtZWpHPg3rwz_D2ZhpDPRUzvOYo7-o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGNmZmU4YTMzZTUyMWNjY2Y5ZTVlOGEiLCJpYXQiOjE2OTE2ODM5MTEsImV4cCI6MTY5MTY4NzUxMX0.Uo5whmOWAyGvnA0HbrnvuBXRtEDW6zaV3uniC8jNkTQ
+
+###
+GET http://192.168.1.162:5000/articles/
+
+###
+GET http://192.168.1.162:5000/articles/64d50c687e097d2b165f05c4
+
+###
+POST http://192.168.1.162:5000/articles HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGNmZmU4YTMzZTUyMWNjY2Y5ZTVlOGEiLCJpYXQiOjE2OTE2ODgzMDMsImV4cCI6MTY5MTY5MTkwM30.HNevEQWoDeLn12_bk0pgyYJrA0jUfonI8sbBGiU-7zA
+
+{
+  "title": "A Vision for Continental Unity",
+  "content": "Introduction<br> &nbsp;In a world that is constantly evolving, the idea of unity and collaboration has never been more relevant. One such visionary concept that has gained momentum over the years is the 'United States of Africa' movement. Born out of a desire for unity, development, and self-sufficiency, this movement envisions a future where the diverse nations of Africa come together to form a single continental entity. In this blog post, we'll delve into the history, goals, challenges, and potential impact of the United States of Africa movement",
+  "coverUrl": "https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/176/176242/scarlet-fever-image-credit-estreya-2007.jpg?w=1575"
+}
+
+###
+PUT http://192.168.1.162:5000/articles/64d50c687e097d2b165f05c4 HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGNmZmU4YTMzZTUyMWNjY2Y5ZTVlOGEiLCJpYXQiOjE2OTE2ODM5MTEsImV4cCI6MTY5MTY4NzUxMX0.Uo5whmOWAyGvnA0HbrnvuBXRtEDW6zaV3uniC8jNkTQ
+
+{
+  "title": "A Vision for Africa Unity",
+  "content": "Introduction<br> &nbsp;In a world that is constantly evolving, the idea of unity and collaboration has never been more relevant. One such visionary concept that has gained momentum over the years is the 'United States of Africa' movement. Born out of a desire for unity, development, and self-sufficiency, this movement envisions a future where the diverse nations of Africa come together to form a single continental entity. In this blog post, we'll delve into the history, goals, challenges, and potential impact of the United States of Africa movement",
+  "coverUrl": "https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/176/176242/scarlet-fever-image-credit-estreya-2007.jpg?w=1575",
+  "userId": "64cffe8a33e521cccf9e5e8a"
+}
+
+### 
+DELETE http://192.168.1.162:5000/articles/64d50c687e097d2b165f05c4 HTTP/1.1

@@ -2,12 +2,51 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { screens } from "../../../helper/styles_variables";
-import { globalPadding } from "../../../helper/styles_variables";
 
 export const LogoContainer = styled.div`
   font-weight: 400;
   font-size: 3.4rem;
   line-height: 69px;
+`;
+
+export const CloseMenu = styled.div`
+  margin-bottom: 30px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+
+    background: white;
+  }
+  &::before {
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) rotateZ(45deg);
+  }
+
+  &::after {
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavLinkContainer = styled(motion.ul)`
@@ -21,9 +60,11 @@ export const NavLinkContainer = styled(motion.ul)`
   background: #2c4844;
   opacity: 0.99;
 
-  position: absolute;
-  top: 90%;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100vh;
 
   overflow: hidden;
 
@@ -32,17 +73,22 @@ export const NavLinkContainer = styled(motion.ul)`
   & li {
     list-style: none;
   }
+
+  @media (max-width: 768px) {
+    & li + li {
+      margin-top: 20px;
+    }
+  }
 `;
 
 export const NavLink = styled(Link)`
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   color: white;
-
   font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 240%;
+  font-size: 1.2rem;
+  line-height: 200%;
 
   ${(props) =>
     props.isLinkActive === true &&
@@ -111,6 +157,7 @@ export const Container = styled.nav`
   top: 50px;
   left: 0;
   width: 100%;
+  max-height: 115px;
   z-index: 10;
 
   @media (max-width: ${screens.mobile}) {
@@ -132,9 +179,13 @@ export const Container = styled.nav`
     flex-direction: row;
     justify-content: space-between;
 
+    max-height: 65px;
+
     & ${NavLinkContainer} {
       position: unset;
       top: unset;
+
+      height: auto;
 
       padding: 0;
       background: unset;
@@ -151,7 +202,7 @@ export const Container = styled.nav`
 
       & ${NavLink} {
         color: ${(props) => (props.isDarkTheme === true ? "white" : "black")};
-        font-size: 22px;
+        font-size: 20px;
       }
     }
   }
@@ -175,7 +226,7 @@ export const Container = styled.nav`
 
       & ${NavLink} {
         color: ${(props) => (props.isDarkTheme === true ? "white" : "black")};
-        font-size: 18px;
+        font-size: 17px;
       }
     }
   }

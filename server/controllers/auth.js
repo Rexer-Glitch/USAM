@@ -4,10 +4,15 @@ const User = require("../models/user");
 // Controller for user sign-up
 exports.signup = async (req, res) => {
   try {
-    const { email, username, password } = req.body;
-    console.log(req.body);
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+      return res
+        .status(409)
+        .json({ message: "Please provide a username, email and password" });
+    }
     // Check if the email or username is already taken
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
         .status(409)
@@ -18,10 +23,13 @@ exports.signup = async (req, res) => {
     const newUser = new User({ email, username, password });
     await newUser.save();
 
-    // Send a success message
-    res.status(201).json({ message: "User created successfully" });
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ accessToken: token, user: newUser });
   } catch (err) {
     res.status(500).json({ message: "Server error" });
+    console.log(err);
   }
 };
 
@@ -33,7 +41,9 @@ exports.login = async (req, res) => {
     // Find the user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res
+        .status(404)
+        .json({ message: "There is no account with this email" });
     }
 
     // Compare the password with the hashed password in the database
@@ -46,9 +56,22 @@ exports.login = async (req, res) => {
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
-      res.status(200).json({ token });
+      res.status(200).json({ accessToken: token, user: user });
     });
   } catch (err) {
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.usernameExists = async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) {
+      res.status(200).json({ result: false });
+    } else {
+      res.status(200).json({ result: true });
+    }
+  } catch (err) {
+    res.status(500).json({ result: true, message: "Server error" });
   }
 };
