@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 const isAuthenticated = (req, res, next) => {
   const token = req.header("Authorization");
@@ -20,4 +20,4 @@ const isAuthenticated = (req, res, next) => {
   });
 };
 
-module.exports = isAuthenticated;
+export default isAuthenticated;

@@ -1,65 +1,44 @@
 import styled from "styled-components";
 
-export const Content = styled.div``;
+export const Date = styled.p``;
 
-export const DateContainer = styled.div`
-  & p {
-    margin-bottom: 10px;
-  }
-`;
+export const Name = styled.p``;
 
-export const UserBubble = styled.div`
-  width: 30px;
-  height: 30px;
-
-  background: #999999;
+export const Avatar = styled.div`
+  background: #272727;
   border-radius: 50%;
 
+  width: 48px;
+  height: 48px
+`;
+ 
+
+
+export const AuthorInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  text-transform: uppercase;
+  gap: 20px;
+
+  
+  font-size: max(1.2rem, 2.5%, 1.2vw);
+  font-weight: bold;
+  text-transform: capitalize;
 `;
 
-export const User = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-`;
+export const Content = styled.div`
+  margin-top: 50px;
+  font-size: 24px;
 
-export const UserContainer = styled.div``;
+  max-width: 1200px;
 
-export const UserDateContainer = styled.div`
-  width: 100%;
-
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-
-  border-radius: 0 0 5px 5px;
-
-  display: flex;
-  align-items: flex-start;
-
-  gap: 50px;
-
-  font-size: 12px;
-
-  padding: 10px;
-
-  & p {
-    font-size: 14px;
-  }
+ 
 `;
 
 export const Image = styled.img`
   width: 100%;
-  height: 400px;
+  height: 500px;
 
   object-fit: cover;
 
@@ -68,15 +47,26 @@ export const Image = styled.img`
   background: #999999;
 `;
 
-export const CoverUserDateContainer = styled.div`
-  position: relative;
+export const CoverContainer = styled.div`
+  width: clamp(200px, 100%, 1200px);
   margin: 20px;
+
+  text-align: center;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  text-align: center;
+  font-size: 56px;
+  margin: 20px 0;
+`;
 
 export const ArticleContainer = styled.div`
   padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
 
   @media (max-width: 400px) {
     padding: 20px 10px;
@@ -92,4 +82,7 @@ export const Container = styled.div`
   overflow: auto;
 
   background: white;
+
+  position: relative;
+ 
 `;

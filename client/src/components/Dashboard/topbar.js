@@ -8,6 +8,7 @@ import {
   Icon,
   Links,
   Link,
+  WriteLink,
   ProfileBubble,
   MenuContainer,
   NotificationsContainer,
@@ -19,7 +20,9 @@ import { AuthContext } from "../../contexts/authContext";
 import search from "../../assets/Search.png";
 import notifications from "../../assets/Notifications.png";
 import messages from "../../assets/Messages.png";
+import writeIcon from "../../assets/signature.png"
 import Menu from "../../assets/Menu_dark.svg";
+
 
 function Topbar() {
   const screenSize = useScreenSize();
@@ -42,6 +45,9 @@ function Topbar() {
             </MenuContainer>
           )}
           <NotificationsContainer>
+            <WriteLink to="/dashboard/write">
+              <Icon src={writeIcon} alt="write icon" /> Write
+            </WriteLink>
             <Link to="/dashboard/nofications">
               <Icon src={notifications} alt="notifications icon" />
             </Link>

@@ -79,6 +79,8 @@ export const Button = styled.button`
   padding: 15px 30px;
 
   margin-bottom: 50px;
+
+  cursor: pointer;
 `;
 
 export const Break = styled.div`
@@ -172,6 +174,15 @@ export const BannerContainer = styled.div`
   background: #162422;
   flex: 1;
   min-height: 100vh;
+
+  & span {
+    color: white;
+    font-weight: bold;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: ${screens.desktop}) {
     display: none;

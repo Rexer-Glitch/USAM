@@ -7,7 +7,7 @@ import {
   Options,
   PostsContainer,
 } from "./styles/posts_styles";
-import Post from "./post";
+import Post from "./post2";
 import { ArticleContext } from "../../contexts/articleContext";
 function Posts() {
   const { articles, getArticles } = useContext(ArticleContext);

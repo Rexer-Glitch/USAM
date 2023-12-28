@@ -1,6 +1,6 @@
-const User = require("../models/user");
+import User from "../models/user.js";
 
-exports.profile = async function (req, res) {
+export const profile = async function (req, res) {
   try {
     const user = await User.findOne({ _id: req.userId });
     if (!user) {

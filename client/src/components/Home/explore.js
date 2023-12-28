@@ -15,29 +15,40 @@ import {
   ReadMoreBtn,
 } from "./styles/explore_styles";
 
-import ArticlesData from "../../helper/articlesData";
+import { ArticleContext } from "../../contexts/articleContext";
+
+import firstParagraph from "../../helper/firstParagraph";
+
+import { useContext, useEffect, useMemo } from "react";
 
 function Article({
   isHorizontal,
   image,
-  user: { profile, name },
+  user: { profile, username },
   date,
   title,
   content,
   link,
 }) {
+  const formatContent = (text) => {
+    text = firstParagraph(text);
+    if (text.length > 100) {
+      return text.slice(0, 100) + "...";
+    }
+    return text;
+  };
   return (
     <ArticleContainer isHorizontal={isHorizontal}>
       <ArticleImage src={image} alt={title} />
       <ArticleContent>
         <UserDateContainer>
-          <UserProfile src={profile} alt={`${name} profile`} />{" "}
+          <UserProfile src={profile} alt={`${username} profile`} />{" "}
           <UserDate>
-            {name} - {date}
+            {username} - {date}
           </UserDate>
         </UserDateContainer>
         <ArticleTitle>{title}</ArticleTitle>
-        <ArticleText>{content}</ArticleText>
+        <ArticleText>{formatContent(content)}</ArticleText>
         <ReadMoreBtn to={link}>Read More</ReadMoreBtn>
       </ArticleContent>
     </ArticleContainer>
@@ -45,6 +56,23 @@ function Article({
 }
 
 function Explore() {
+  const { articles, getArticles } = useContext(ArticleContext);
+
+  useEffect(() => {
+    getArticles();
+  }, []);
+
+  const getTopThree = useMemo(() => {
+    if (!articles) return [];
+   
+    if(articles.message === "Server error") return [];
+
+    const sortedArticles = [...articles].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    return sortedArticles.slice(0, 3);
+  }, [articles]);
+
   return (
     <Container>
       <Heading>
@@ -56,38 +84,38 @@ function Explore() {
         Africa's progress.
       </Para>
       <Articles>
-        {ArticlesData &&
-          ArticlesData.map(
-            ({ image, user, date, title, content, link }, index) => {
+        {getTopThree &&
+          getTopThree.map(
+            ({ coverUrl, author, date, title, content, _id }, index) => {
               if (index === 0)
                 return (
                   <Article
-                    image={image}
+                    image={coverUrl}
                     isHorizontal={true}
-                    user={user}
+                    user={author}
                     date={date}
                     title={title}
                     content={content}
-                    link={link}
+                    link={`/dashboard/posts/${_id}`}
                   />
                 );
               return <></>;
             }
           )}
         <SideArticlesContainer>
-          {ArticlesData &&
-            ArticlesData.map(
-              ({ image, user, date, title, content, link }, index) => {
+          {getTopThree &&
+            getTopThree.map(
+              ({ coverUrl, author, date, title, content, _id }, index) => {
                 if (index !== 0)
                   return (
                     <Article
-                      image={image}
+                      image={coverUrl}
                       isHorizontal={false}
-                      user={user}
+                      user={author}
                       date={date}
                       title={title}
                       content={content}
-                      link={link}
+                      link={`/dashboard/posts/${_id}`}
                     />
                   );
                 return <></>;

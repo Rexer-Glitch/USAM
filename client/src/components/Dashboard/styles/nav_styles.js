@@ -76,7 +76,8 @@ export const NavLinkGroup = styled.div`
   }
 `;
 
-export const SocialContainer = styled.div``;
+export const SocialContainer = styled.div`
+`;
 
 export const SocialCopyrightContainer = styled.section`
   position: absolute;
@@ -96,9 +97,11 @@ export const NavlinksContainer = styled.section`
 `;
 
 export const LogoContainer = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+& img{
+    height: 40px;
+    margin-left: 19px;
+  }
 
   font-style: normal;
   font-weight: 500;
@@ -148,46 +151,36 @@ export const LogoContainer = styled.section`
     & div {
       display: none;
     }
+
   }
+
+
 `;
 
 export const Container = styled.nav`
   position: relative;
   z-index: 10;
   height: 100vh;
-  width: 250px;
+  width: 220px;
 
   background: #2c4844;
   opacity: 0.99;
   color: white;
 
-  transition: all ease-in-out 250ms;
+  transition: width ease-in-out 250ms;
+
+  overflow: hidden;
 
   ${(props) =>
     props.isIconVersion === true &&
     `
-    & ${NavLinkGroup} label {
-        display: none;
-    }
 
-    & ${Bubble} {
-        display: none;
-    }
-
-    & ul, li {
-        padding: 0;
-    }
-
-    & li + li {
-        margin-top: 20px;
-    }
-
-    & ${NavLinkGroup} {
-        margin: 30px 0;
-    }
-
-    width: 55px;
+    width: 49px;
     padding: 0;
+
+    section:first-child img {
+      opacity: 0;
+    }
 
   `}
 

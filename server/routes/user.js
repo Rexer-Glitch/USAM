@@ -1,9 +1,9 @@
-const { profile } = require("../controllers/user");
-const isAuthenticated = require("../middleware/isAuth");
+import  { profile } from "../controllers/user.js";
+import isAuthenticated  from "../middleware/isAuth.js";
 
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 router.get("/profile", isAuthenticated, profile);
 
-module.exports = router;
+export default router;

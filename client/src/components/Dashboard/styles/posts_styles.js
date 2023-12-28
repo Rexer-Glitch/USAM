@@ -57,16 +57,14 @@ export const OptionsContainer = styled.div`
 `;
 
 export const PostsContainer = styled.div`
+
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
 
   @media (max-width: ${screens.tablet}) {
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
 
     & div + div {
       margin-top: 40px;
@@ -75,10 +73,14 @@ export const PostsContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  background: #ffffff;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  width: auto;
   border-radius: 8px;
 
-  margin: 10px 20px;
+  margin: 10px 0 10px 20px ;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    margin: 0;
+    padding: 10px;
+  }
 `;

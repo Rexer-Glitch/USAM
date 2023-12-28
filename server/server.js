@@ -1,10 +1,11 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/user");
-const articleRoutes = require("./routes/article");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
+import articleRoutes from "./routes/article.js";
+import paypalRoutes from "./routes/paypal.js";
 
 dotenv.config();
 
@@ -32,6 +33,8 @@ app.use("/auth", authRoutes);
 app.use("/account", userRoutes);
 
 app.use("/articles", articleRoutes);
+
+app.use("/api" ,paypalRoutes)
 
 app.get("/", function (res, req) {
   req.json({ data: "hello" });

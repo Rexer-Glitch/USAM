@@ -107,6 +107,8 @@ export const UserProfile = styled.img`
 
   position: relative;
 
+  color: transparent;
+
   &::after {
     content: "";
     position: absolute;
@@ -118,6 +120,7 @@ export const UserProfile = styled.img`
     left: 0;
 
     background: #5e5e5e;
+    border-radius: 50%;
   }
 `;
 
@@ -142,7 +145,7 @@ export const ArticleContent = styled.div`
 export const ArticleImage = styled.img`
   width: 100%;
   min-width: 350px;
-  min-height: 480px;
+  height: 480px;
 
   background: grey;
   border-radius: 20px 20px 0px 0px;

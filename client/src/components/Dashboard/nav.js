@@ -5,7 +5,6 @@ import {
   NavlinksContainer,
   SocialCopyrightContainer,
   SocialContainer,
-  NavLinkGroup,
   IconTextContainer,
   Icon,
   Link,
@@ -29,6 +28,7 @@ import Twitter from "../../assets/Twitter.svg";
 import Instagram from "../../assets/Instagram.svg";
 import Youtube from "../../assets/YouTube.svg";
 import Tiktok from "../../assets/TikTok.svg";
+import logoLight from "../../assets/logo_Light.png"
 
 function Navigation() {
   const { isShowMenu, setShowMenu } = useContext(DashboardContext);
@@ -53,13 +53,12 @@ function Navigation() {
           onMouseLeave={() => setIsIconVersion(true)}
         >
           <LogoContainer>
-            <h1>{isIconVersion && screenSize > 768 ? "L" : "LOGO"}</h1>
+          <img src={logoLight} alt="USAM Logo"/>
             {screenSize < 768 && <div onClick={() => setShowMenu(false)}></div>}
           </LogoContainer>
 
           <NavlinksContainer>
-            <NavLinkGroup>
-              <label>Main Menu</label>
+        
               <ul>
                 <Navlinks>
                   <Navlink to="/dashboard/messages">
@@ -87,9 +86,7 @@ function Navigation() {
                   </Navlink>
                 </Navlinks>
               </ul>
-            </NavLinkGroup>
-            <NavLinkGroup>
-              <label>Explore</label>
+           
               <ul>
                 <Navlinks>
                   <Navlink to="/dashboard/events">
@@ -108,7 +105,6 @@ function Navigation() {
                   </Navlink>
                 </Navlinks>
               </ul>
-            </NavLinkGroup>
           </NavlinksContainer>
 
           {!isIconVersion && (

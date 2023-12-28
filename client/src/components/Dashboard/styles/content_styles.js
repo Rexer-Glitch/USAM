@@ -4,7 +4,7 @@ export const Container = styled.main`
   width: 100%;
   height: 100vh;
 
-  background: #edf9f7;
+  background: #f2f7f6;
 
   overflow: auto;
 `;

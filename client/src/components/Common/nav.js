@@ -10,16 +10,20 @@ import {
 } from "./styles/nav_styles";
 import MenuIcon from "../../assets/Menu.svg";
 import MenuDarkIcon from "../../assets/Menu_dark.svg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, forwardRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import useScrollPosition from "../../hooks/useScrollPosition";
+import logoDark from "../../assets/logo_dark.png";
+import logoLight from "../../assets/logo_Light.png"
 
-function Navigation({
+
+
+const Navigation = forwardRef(function ({
   isDarkTheme = false,
   withShadow = true,
   applyPadding = false,
   ...root
-}) {
+}, ref) {
   const [isMenuOpen, setIsMenuOpen] = useState(
     window.innerWidth >= 768 ? true : false
   );
@@ -53,9 +57,10 @@ function Navigation({
       isMenuOpen={isMenuOpen}
       withShadow={scrollHeight >= 50}
       applyPadding={applyPadding}
+      ref={ref}
       {...root}
     >
-      <LogoContainer>LOGO</LogoContainer>
+      <LogoContainer to="/"><img src={!(isDarkTheme && scrollHeight <= 50)  ? logoDark : logoLight} alt="USAM Logo"/></LogoContainer>
       <AnimatePresence>
         {isMenuOpen && (
           <NavLinkContainer
@@ -120,6 +125,6 @@ function Navigation({
       </MenuContainer>
     </Container>
   );
-}
+})
 
 export default Navigation;

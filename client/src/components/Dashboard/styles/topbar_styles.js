@@ -19,6 +19,33 @@ export const ProfileBubble = styled.div`
 
 export const Link = styled(link)``;
 
+export const WriteLink = styled(link)`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-right: 30px;
+  padding: 8px 15px;
+  background: #2c4844;
+
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+
+  border-radius: 10px;
+
+  & img {
+    filter: invert(100%);
+    height: 28px;
+  }
+
+  &:hover {
+    filter: invert(10%);
+  }
+
+  cursor: pointer;
+`;
+
 export const Icon = styled.img``;
 
 export const Links = styled.div`
@@ -30,6 +57,7 @@ export const Links = styled.div`
   @media (max-width: 768px) {
     justify-content: space-between;
   }
+
 `;
 
 export const SearchIcon = styled.img`
@@ -48,7 +76,12 @@ export const Textbox = styled.input`
 
 export const MenuContainer = styled.div``;
 
-export const NotificationsContainer = styled.div``;
+export const NotificationsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+`;
 
 export const UserNotificationContainer = styled.div``;
 

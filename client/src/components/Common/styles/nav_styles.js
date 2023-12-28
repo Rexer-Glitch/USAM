@@ -3,10 +3,19 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { screens } from "../../../helper/styles_variables";
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(Link)`
   font-weight: 400;
   font-size: 3.4rem;
   line-height: 69px;
+  text-decoration: none;
+  padding: 0; 
+
+  display: flex;
+  align-items: center;
+
+  & img{
+    height: 40px;
+  }
 `;
 
 export const CloseMenu = styled.div`

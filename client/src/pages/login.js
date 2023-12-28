@@ -21,6 +21,8 @@ import {
 
 import GoogleImage from "../assets/Google.png";
 
+import AnimatedTextWord from "../components/Common/animatedTextByWord";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -90,7 +92,9 @@ function Login() {
             <NotificationText>{notificationText}</NotificationText>
           </Form>
         </LoginFormContainer>
-        <BannerContainer></BannerContainer>
+        <BannerContainer>
+          <AnimatedTextWord text="The United States of Africa welcomes you" />
+        </BannerContainer>
       </Content>
     </Container>
   );

@@ -1,65 +1,77 @@
+
 import {
   Container,
   ArticleContainer,
   Title,
-  CoverUserDateContainer,
+  CoverContainer,
+  AuthorInfo,
+  Avatar,
+  Name,
+  Date,
   Image,
-  UserDateContainer,
-  UserContainer,
-  User,
-  UserBubble,
-  DateContainer,
   Content,
 } from "./styles/viewArticle_styles";
 import { useParams } from "react-router-dom";
 import { ArticleContext } from "../../contexts/articleContext";
-import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext, useState, useEffect, useMemo } from "react";
 import Topbar from "./topbar";
+import PostControllers from "./postResponseControllers";
+import Comments from "./comments";
 
 function ViewArticle() {
   const { postID } = useParams();
 
-  const { getArticleFromDB } = useContext(ArticleContext);
+  const { user } = useContext(AuthContext);
+  const { articles } = useContext(ArticleContext);
   const [article, setArticle] = useState({});
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
-    getArticleFromDB(postID).then((result) => {
-      if (result && result.message) {
-        //notify user
-        return;
-      }
-      setArticle(result);
-    });
-  }, [getArticleFromDB, setArticle, postID]);
+    const currentArticle = articles.find((a)=> a._id === postID);
+    if(!currentArticle)return;
+
+    setArticle(currentArticle);
+    console.log(currentArticle);
+  }, [articles, setArticle, postID]);
+
+  const alreadyLiked = useMemo(() => {
+    return user && article.likedBy && article.likedBy.includes(user._id);
+  }, [user, article]);
 
   return (
     <Container>
       <Topbar />
       {article && article.title && (
         <ArticleContainer>
-          <Title>{article.title}</Title>
-          <CoverUserDateContainer>
+          <CoverContainer>
             <Image
               src={article.coverUrl}
               alt={`${article.title} - blog cover`}
             />
-            <UserDateContainer>
-              <UserContainer>
-                <p>Written by</p>
-                <User>
-                  <UserBubble>{article.author.username[0]}</UserBubble>
-                  {article.author.username}
-                </User>
-              </UserContainer>
-              <DateContainer>
-                <p>Published on</p>
-                {article.date}
-              </DateContainer>
-            </UserDateContainer>
-          </CoverUserDateContainer>
+          </CoverContainer>
+          <Title>{article.title}</Title>
+          <AuthorInfo>
+            <Avatar></Avatar>
+            <Name>{article.author.username}</Name> | <Date>{article.date}</Date>
+          </AuthorInfo>
           <Content dangerouslySetInnerHTML={{ __html: article.content }} />
         </ArticleContainer>
       )}
+
+      <PostControllers
+        id={article._id}
+        isLiked={alreadyLiked}
+        like_counter={article.likes ? article.likes : ""}
+        comment_counter={
+          article.comments && article.comments.length > 0
+            ? article.comments.length
+            : ""
+        }
+        showComments={()=> setShowComments(true)}
+      />
+
+      {showComments && <Comments article_id={article._id} comments={article.comments} exit={()=> setShowComments(false)}/>}
     </Container>
   );
 }

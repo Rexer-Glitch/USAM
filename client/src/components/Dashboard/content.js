@@ -1,8 +1,8 @@
 import { Container } from "./styles/content_styles";
 import Topbar from "./topbar";
-import Posts from "./posts";
 import WriteArticle from "./writeArticle";
 import ViewArticle from "./viewArticle";
+import NewsFeed from "./newsFeed";
 
 function Content({ page = "main" }) {
   return (
@@ -10,7 +10,7 @@ function Content({ page = "main" }) {
       <Topbar />
       {page === "main" && <WriteArticle />}
       {page === "post" && <ViewArticle />}
-      <Posts />
+      <NewsFeed />
     </Container>
   );
 }
